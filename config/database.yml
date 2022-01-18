@@ -24,6 +24,7 @@ default: &default
   password: rails-course
   host: localhost
   port: 5432
+  # rake db:create:all
 
 development:
   <<: *default
