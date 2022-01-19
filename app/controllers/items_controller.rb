@@ -29,10 +29,7 @@ class ItemsController < ApplicationController
   end
 
   def show;
-    @item = Item.where(id: params[:id]).first
-    if @item
-        render "items/show"
-    else
+    unless (@item = Item.where(id: params[:id]).first)
       render body: "Not found", status: 404
     end
   end
