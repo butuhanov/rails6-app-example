@@ -24,19 +24,19 @@ class ItemsController < ApplicationController
     end
   end
 
-  def new
+  def new;
 
   end
 
-  def show
+  def show;
 
   end
 
-  def edit
+  def edit;
 
   end
 
-  def update
+  def update;
 
   end
 
