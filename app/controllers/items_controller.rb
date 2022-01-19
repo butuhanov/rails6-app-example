@@ -6,6 +6,9 @@ class ItemsController < ApplicationController
   skip_before_action :verify_authenticity_token # не проверять токен безопасности,
   # иначе при пост запросе через курл получаем ошибку ActionController::InvalidAuthenticityToken
 
+  before_action :find_item, only: %i[show edit update destroy]  # выполнять приватный метод
+  # перед перечисленными
+
   def index # эндпоинт index
     @items = Item.all # Объявляем инстансную переменную в которую поместим всё что есть в таблице Items
       # render body: @items.map {|i| "#{i.name}:#{i.price}"}
@@ -28,20 +31,15 @@ class ItemsController < ApplicationController
   def new;   end
 
   def show;
-    unless (@item = Item.where(id: params[:id]).first)
-      render body: "Not found", status: 404
-    end
+      render body: "Not found", status: 404  unless @item
   end
 
   def edit;
-    unless (@item = Item.where(id: params[:id]).first)
-      render body: "Not found", status: 404
-    end
+      render body: "Not found", status: 404  unless @item
   end
 
   def update;
-    item = Item.where(id: params[:id]).first
-    if item.update(items_params)
+    if @item.update(items_params)
     redirect_to item_path
     else
       render json: item.errors, status: :unprocessable_entity
@@ -49,8 +47,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy;
-    item = Item.where(id: params[:id]).first.destroy
-    if item.destroyed?
+    if @item.destroy.destroyed?
       redirect_to items_path # делаем редирект на индексную страницу
     else
       render json: item.errors, status: :unprocessable_entity
@@ -66,5 +63,11 @@ class ItemsController < ApplicationController
   def items_params
     # параметры которые хотим сохранять, которые будут доступны
     params.permit(:name, :price, :real, :weight, :description)
+  end
+
+  # Поиск по id нужного элемента, над которым требуется произвести действие
+  # для обеспечения принципа DRY
+  def find_item
+    @item = Item.where(id: params[:id]).first
   end
 end
