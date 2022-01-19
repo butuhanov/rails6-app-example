@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   before_action :find_item, only: %i[show edit update destroy upvote]  # выполнять приватный метод
   # перед перечисленными
 
-  before_action :is_admin?, only: %i[edit update new create destroy] # проверять для этих эндпоинтов достаточность прав
+  before_action :is_admin?, only: %i[destroy] # проверять для этих эндпоинтов достаточность прав
 
   after_action :show_info,  only: %i[index]
 
@@ -82,6 +82,7 @@ class ItemsController < ApplicationController
   # для обеспечения принципа DRY
   def find_item
     @item = Item.where(id: params[:id]).first
+    render_404 unless @item
   end
 
   # Проверка админских прав
@@ -90,7 +91,8 @@ class ItemsController < ApplicationController
     # ниже временная заглушка для теста, пока не реализован current_user
     # Проверка http://127.0.0.1:3000/items/13/edit?admin=1
     # render json: 'Access denied', status: :forbidden unless params[:admin]
-    true # временно всегда истина
+    # true # временно всегда истина
+    render_403 unless  params[:admin]
   end
 
   def show_info
