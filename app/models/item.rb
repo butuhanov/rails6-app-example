@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
 
   validates :price, numericality: {greater_than: 0, :allow_nil => :true }
+  validates :name, :description, presence: true
 
   # 2.7.3 :003 > Item.new(price:-2).save
   # => false
