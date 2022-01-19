@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   # создать для всех известных плюс дополнить список
   resources :items do
     get :upvote, on: :member # использовать для конкретного единственного элемента GET /items/:id/upvote
+    get :expensive, on: :collection # использовать для коллекции элементов GET /items/expensive
   end
 end

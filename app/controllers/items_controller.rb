@@ -64,6 +64,12 @@ class ItemsController < ApplicationController
     redirect_to items_path # редирект на индексную страницу
   end
 
+  def expensive
+    @items = Item.where('price>50')
+    render :index
+  end
+
+
   private
   # При добавлении в БД нужно проверять что туда пишется
   # для этого создаём приватный метод items_params
