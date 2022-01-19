@@ -1,0 +1,16 @@
+<h2 style="color:red; margin 0 auto">Create new item</h2>
+
+<!-- Способ 1 -->
+<form action="/items/new" method="post">
+  <input type=text name="title">
+  <input type=submit>
+</form>
+
+<!-- Способ 2 -->
+<%= form_tag new_item_path, method: :post do %>
+<%= label_tag :name %>
+<%= text_field_tag :name %>
+<%= label_tag :price %>
+<%= text_field_tag :price %>
+<%= submit_tag "Save", class: "btn btn-large btn-primary" %>
+<% end %>
