@@ -42,7 +42,13 @@ class ItemsController < ApplicationController
 
   end
 
-  def destroy
+  def destroy;
+    item = Item.where(id: params[:id]).first.destroy
+    if item.destroyed?
+      redirect_to items_path # делаем редирект на индексную страницу
+    else
+      render json: item.errors, status: :unprocessable_entity
+    end
 
   end
 
