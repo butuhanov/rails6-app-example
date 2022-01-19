@@ -1,6 +1,8 @@
+<h2 style="color:red; margin 0 auto">All items</h2>
+
 <% @items.each do |item| %>
   <ul>
-    <li><%= item.name %></li>
+    <li><%= link_to item.name, "/items/#{item.id}" %></li>
     <li><%= item.price %></li>
     <li><%= item.description %></li>
   </ul>
