@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   skip_before_action :verify_authenticity_token # не проверять токен безопасности,
   # иначе при пост запросе через курл получаем ошибку ActionController::InvalidAuthenticityToken
 
-  before_action :find_item, only: %i[show edit update destroy]  # выполнять приватный метод
+  before_action :find_item, only: %i[show edit update destroy upvote]  # выполнять приватный метод
   # перед перечисленными
 
   before_action :is_admin?, only: %i[edit update new create destroy] # проверять для этих эндпоинтов достаточность прав
@@ -60,7 +60,8 @@ class ItemsController < ApplicationController
   end
 
   def upvote
-
+    @item.increment! :votes_count # увеличим на единицу поле votes_count
+    redirect_to items_path # редирект на индексную страницу
   end
 
   private
@@ -82,7 +83,8 @@ class ItemsController < ApplicationController
     # render json: 'Access denied', status: :forbidden unless current_user.admin
     # ниже временная заглушка для теста, пока не реализован current_user
     # Проверка http://127.0.0.1:3000/items/13/edit?admin=1
-    render json: 'Access denied', status: :forbidden unless params[:admin]
+    # render json: 'Access denied', status: :forbidden unless params[:admin]
+    true # временно всегда истина
   end
 
   def show_info
