@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  # Модель указывается в единственном числе, контроллер во множественном
 
   layout false # не требовать подключения вью
 
@@ -21,6 +22,26 @@ class ItemsController < ApplicationController
     else
       render json: item.errors, status: :unprocessable_entity
     end
+  end
+
+  def new
+
+  end
+
+  def show
+
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+
   end
 
   # При добавлении в БД нужно проверять что туда пишется

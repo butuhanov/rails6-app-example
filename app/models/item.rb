@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  # Модель указывается в единственном числе, контроллер во множественном
 
   validates :price, numericality: {greater_than: 0, :allow_nil => :true }
   validates :name, :description, presence: true
