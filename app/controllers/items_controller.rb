@@ -11,6 +11,8 @@ class ItemsController < ApplicationController
 
   before_action :is_admin?, only: %i[edit update new create destroy] # проверять для этих эндпоинтов достаточность прав
 
+  after_action :show_info,  only: %i[index]
+
   def index # эндпоинт index
     @items = Item.all # Объявляем инстансную переменную в которую поместим всё что есть в таблице Items
       # render body: @items.map {|i| "#{i.name}:#{i.price}"}
@@ -79,6 +81,10 @@ class ItemsController < ApplicationController
     # ниже временная заглушка для теста, пока не реализован current_user
     # Проверка http://127.0.0.1:3000/items/13/edit?admin=1
     render json: 'Access denied', status: :forbidden unless params[:admin]
+  end
+
+  def show_info
+    puts "Index endpoint"
   end
 
 end
