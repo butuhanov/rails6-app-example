@@ -18,7 +18,8 @@ class ItemsController < ApplicationController
 
     # ДОбавляем ответ в зависимости от успешности сохранения
     if item.persisted?
-      render json: item.name, status: :created
+      # render json: item.name, status: :created
+      redirect_to items_path
     else
       render json: item.errors, status: :unprocessable_entity
     end
