@@ -59,11 +59,13 @@ class ItemsController < ApplicationController
 
   end
 
-  # При добавлении в БД нужно проверять что туда пишется
-  # для этого создаём приватный метод items_params
+  def upvote
+
+  end
 
   private
-
+  # При добавлении в БД нужно проверять что туда пишется
+  # для этого создаём приватный метод items_params
   def items_params
     # параметры которые хотим сохранять, которые будут доступны
     params.permit(:name, :price, :real, :weight, :description)

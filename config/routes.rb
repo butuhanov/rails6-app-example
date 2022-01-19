@@ -6,6 +6,13 @@ Rails.application.routes.draw do
 
   # get '/items', to: 'items#index'
   # post '/items', to: 'items#create'
+  #
+  # создать для выборочных
   # resources :items, only: %i[index create]
-   resources :items
+  # создать для всех известных
+  #  resources :items
+  # создать для всех известных плюс дополнить список
+  resources :items do
+    get :upvote, on: :member # использовать для конкретного элемента GET /items/:id/upvote
+  end
 end
