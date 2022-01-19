@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
 
-  validates :price, numericality: {greater_than: 0}
+  validates :price, numericality: {greater_than: 0, :allow_nil => :true }
 
   # 2.7.3 :003 > Item.new(price:-2).save
   # => false
@@ -12,4 +12,5 @@ class Item < ApplicationRecord
   #  => true
   # 2.7.3 :005 >
 
+  # см. https://guides.rubyonrails.org/active_record_validations.html
 end
