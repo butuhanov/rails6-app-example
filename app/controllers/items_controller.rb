@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
   end
 
   def show;
-
+    @item = Item.where(id: params[:id]).first
   end
 
   def edit;
