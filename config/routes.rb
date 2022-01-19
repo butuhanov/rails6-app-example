@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   #  resources :items
   # создать для всех известных плюс дополнить список
   resources :items do
-    get :upvote, on: :member # использовать для конкретного элемента GET /items/:id/upvote
+    get :upvote, on: :member # использовать для конкретного единственного элемента GET /items/:id/upvote
   end
 end
