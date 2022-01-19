@@ -24,9 +24,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def new;
-
-  end
+  def new;   end
 
   def show;
     unless (@item = Item.where(id: params[:id]).first)
@@ -35,11 +33,18 @@ class ItemsController < ApplicationController
   end
 
   def edit;
-
+    unless (@item = Item.where(id: params[:id]).first)
+      render body: "Not found", status: 404
+    end
   end
 
   def update;
-
+    item = Item.where(id: params[:id]).first
+    if item.update(items_params)
+    redirect_to item_path
+    else
+      render json: item.errors, status: :unprocessable_entity
+      end
   end
 
   def destroy;
