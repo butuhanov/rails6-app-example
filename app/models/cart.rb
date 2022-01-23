@@ -36,5 +36,9 @@ class Cart < ApplicationRecord
   # 2.7.3 :022 >
 
 
-  has_and_belongs_to_many :items # в корзину можно поместить один и тот же товар, который будет принадлежать разным юзерам
+  # has_and_belongs_to_many :items # в корзину можно поместить один и тот же товар, который будет принадлежать разным юзерам
+  # Меняем на has many :through
+  has_many :positions
+  has_many :items, through: :positions
+
 end

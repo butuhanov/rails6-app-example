@@ -8,8 +8,11 @@ class Item < ApplicationRecord
   # belongs_to cart будет означать что конкретный товар может находиться только в одной корзине
   # но один товар может быть добавлен разными пользователями
   # чтобы один и тот же товар мог находится в разных корзинах нужно использовать has_and_belongs_to_many
-  # которые принадлежат разным пользователям
-  has_and_belongs_to_many :carts
+  # которые принадлежат разным пользователя
+  # has_and_belongs_to_many :carts
+  # Меняем на has many :through
+  has_many :positions
+  has_many :carts, through: :positions
 
   # 2.7.3 :003 > Item.new(price:-2).save
   # => false
