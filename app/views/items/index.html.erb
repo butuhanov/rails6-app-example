@@ -1,5 +1,5 @@
 <h2 style="color:red; margin 0 auto">All items</h2>
-
+<% unless @items.empty? %>
 <table>
   <tr>
     <th>Id</th>
@@ -28,3 +28,7 @@
 <%= button_to 'new item', new_item_path, method: :get %>
 <%= button_to 'expensive', expensive_items_path, method: :get %>
 <%= button_to 'all', items_path, method: :get %>
+<% else %>
+  <h2 style="color:green; margin 0 auto">No items</h2>
+  <%= button_to 'new item', new_item_path, method: :get %>
+<% end %>
