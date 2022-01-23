@@ -4,6 +4,13 @@ class Item < ApplicationRecord
   validates :price, numericality: {greater_than: 0, :allow_nil => :true }
   validates :name, :description, presence: true
 
+  # Корзина может иметь неограниченное количество товаров
+  # belongs_to cart будет означать что конкретный товар может находиться только в одной корзине
+  # но один товар может быть добавлен разными пользователями
+  # чтобы один и тот же товар мог находится в разных корзинах нужно использовать has_and_belongs_to_many
+  # которые принадлежат разным пользователям
+  has_and_belongs_to_many :carts
+
   # 2.7.3 :003 > Item.new(price:-2).save
   # => false
   #
