@@ -5,7 +5,7 @@
 <ul>
   <li>Price: <%= @item.price %> $</li>
   <li>Weight: <%= @item.weight %> kg</li>
-  <li>Description: <%= urls_to_images(@item.description) %></li>
+  <li>Description: <%= urls_to_content(@item.description) %></li>
 </ul></br>
 
 <%= button_to "edit #{@item.name}", edit_item_path, method: :get %>
