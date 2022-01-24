@@ -14,12 +14,13 @@ class ItemsController < ApplicationController
   after_action :show_info,  only: %i[index]
 
   def index # эндпоинт index
-    @items = Item.all # Объявляем инстансную переменную в которую поместим всё что есть в таблице Items
+    @items = Item.all.order(:votes_count)
+    @items = Item.all.order('votes_count DESC', 'price DESC').limit 3
       # render body: @items.map {|i| "#{i.name}:#{i.price}"}
       # Примеры where
-      @items = Item.where(name:'car', price:200, votes_count:0)
-    @items = Item.where('price>=200 OR votes_count>2')
-    @items = Item.where('price>=? OR votes_count>2', params[:price_from])
+      #  @items = Item.where(name:'car', price:200, votes_count:0)
+      #  @items = Item.where('price>=200 OR votes_count>2')
+      #  @items = Item.where('price>=? OR votes_count>2', params[:price_from])
       # см. также https://www.rubyguides.com/2019/07/rails-where-method/
       # https://guides.rubyonrails.org/active_record_querying.html
   end
