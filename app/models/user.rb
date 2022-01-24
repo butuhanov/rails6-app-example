@@ -77,6 +77,6 @@ class User < ApplicationRecord
   #   Order Load (1.2ms)  SELECT "orders".* FROM "orders" WHERE "orders"."user_id" = $1  [["user_id", 2]]
   #  =>
 
-
+  has_many :comments
 
 end
