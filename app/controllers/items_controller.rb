@@ -43,9 +43,11 @@ class ItemsController < ApplicationController
     # ДОбавляем ответ в зависимости от успешности сохранения
     if item.persisted?
       # render json: item.name, status: :created
+      flash[:success] = "Item was saved"
       redirect_to items_path
     else
-      render json: item.errors, status: :unprocessable_entity
+      flash.now[:error] = "Please fill all fields correctly"
+      render :new
     end
   end
 
@@ -61,16 +63,20 @@ class ItemsController < ApplicationController
 
   def update;
     if @item.update(items_params)
+      flash[:success] = "Item was updated"
     redirect_to item_path
     else
+      flash.now[:error] = "Please fill all fields correctly"
       render json: item.errors, status: :unprocessable_entity
       end
   end
 
   def destroy;
     if @item.destroy.destroyed?
+      flash[:success] = "Item was deleted"
       redirect_to items_path # делаем редирект на индексную страницу
     else
+      flash.now[:error] = "Item wasn't deleted"
       render json: item.errors, status: :unprocessable_entity
     end
 
