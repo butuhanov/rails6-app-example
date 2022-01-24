@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   end
 
   get '/admin/users_count', to: 'admin#users_count'
+
+  root to: 'items#index'
 end
