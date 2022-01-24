@@ -29,6 +29,9 @@ class Item < ApplicationRecord
 
   has_many :comments, as: :commentable
   # Таким образом обозначаем что Item является комментируемым
+  #
+
+  has_one :image, as: :imageable
 
   # Callbacks
   # см. также https://guides.rubyonrails.org/active_record_callbacks.html
