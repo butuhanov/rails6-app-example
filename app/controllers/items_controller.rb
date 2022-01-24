@@ -14,8 +14,8 @@ class ItemsController < ApplicationController
   after_action :show_info,  only: %i[index]
 
   def index # эндпоинт index
-    @items = Item.all.order(:votes_count)
-    @items = Item.all.order('votes_count DESC', 'price DESC').limit 3
+    # @items = Item.all.order(:votes_count)
+    # @items = Item.all.order('votes_count DESC', 'price DESC').limit 3
       # render body: @items.map {|i| "#{i.name}:#{i.price}"}
       # Примеры where
       #  @items = Item.where(name:'car', price:200, votes_count:0)
@@ -23,6 +23,11 @@ class ItemsController < ApplicationController
       #  @items = Item.where('price>=? OR votes_count>2', params[:price_from])
       # см. также https://www.rubyguides.com/2019/07/rails-where-method/
       # https://guides.rubyonrails.org/active_record_querying.html
+    #
+    # Для пустого запроса выводить всё
+    @items = Item
+    @items = @items.where('price>=?', params[:price_from]) if params[:price_from]
+    @items = @items.order(:id)
   end
 
   def create
