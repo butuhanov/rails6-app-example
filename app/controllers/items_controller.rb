@@ -30,6 +30,9 @@ class ItemsController < ApplicationController
     @items = @items.where('created_at >=?', 1.day.ago) if params[:today]
     @items = @items.where('votes_count >=?', params[:votes_from]) if params[:votes_from]
     @items = @items.order(:id)
+
+    # Используем механизм жадной загрузки - eager loading
+    @items = @items.includes(:image)
   end
 
   def create
