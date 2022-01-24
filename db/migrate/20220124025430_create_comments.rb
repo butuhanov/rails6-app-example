@@ -8,7 +8,7 @@ class CreateComments < ActiveRecord::Migration[7.0]
       # Т.о. пользователь может оставить коммент к товару либо к посту в блоге, но тогда в таблице будет много пустых
       # ячеек. Чтобы этого избежать вводятся полиморфные связи.
       t.integer commentable_id
-      t.integer commentable_type
+      t.string commentable_type # Item or BlogPost
       t.timestamps
     end
   end
