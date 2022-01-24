@@ -8,6 +8,6 @@
   <li>Description: <%= @item.description %></li>
 </ul></br>
 
-<%= link_to "edit #{@item.name}", edit_item_path %></br>
-<%= button_to "delete #{@item.name}", item_path(@item), method: :delete %></br>
-<%= link_to "index", items_path %>
+<%= button_to "edit #{@item.name}", edit_item_path, method: :get %>
+<%= button_to "delete #{@item.name}", item_path(@item), method: :delete %>
+<%= button_to "index", items_path, method: :get %>
