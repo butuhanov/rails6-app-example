@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   # Модель указывается в единственном числе, контроллер во множественном
 
-  layout false # не требовать подключения вью
+  # layout false # не требовать подключения вью
 
   skip_before_action :verify_authenticity_token # не проверять токен безопасности,
   # иначе при пост запросе через курл получаем ошибку ActionController::InvalidAuthenticityToken
