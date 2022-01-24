@@ -27,6 +27,9 @@ class Item < ApplicationRecord
   # см. https://guides.rubyonrails.org/active_record_validations.html
   #
 
+  has_many :comments, as: :commentable
+  # Таким образом обозначаем что Item является комментируемым
+
   # Callbacks
   # см. также https://guides.rubyonrails.org/active_record_callbacks.html
   after_initialize { p 'after initialize'} # Item.new
