@@ -100,7 +100,9 @@ class ItemsController < ApplicationController
   # для этого создаём приватный метод items_params
   def items_params
     # параметры которые хотим сохранять, которые будут доступны
-    params.permit(:name, :price, :real, :weight, :description)
+    # params.permit(:name, :price, :real, :weight, :description)
+    #
+    params.require(:item).permit(:name, :price, :real, :weight, :description)
   end
 
   # Поиск по id нужного элемента, над которым требуется произвести действие
