@@ -7,4 +7,15 @@ RSpec.describe Item, type: :model do
     # должно быть presence: true на name
     should validate_presence_of :name
   end
+
+  # Ещё пример теста. Проверяем связи
+  it 'has many' do
+    should have_many :positions
+    should have_many :carts
+    should have_many :comments
+  end
+
+  it 'has one' do
+    should have_one :image
+  end
 end
