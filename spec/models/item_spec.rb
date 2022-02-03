@@ -9,26 +9,17 @@ RSpec.describe Item, type: :model do
   it {should have_many :comments}
   it {should have_one :image}
 
-  # it 'validates name' do
-  #   # проверяем класс Item
-  #   # validates :name, :description, presence: true
-  #   # должно быть presence: true на name
-  #   should validate_presence_of :name
-  # end
-  #
-  # it 'validates price' do
-  #   should validate_numericality_of :price
-  # end
-  #
-  # # Ещё пример теста. Проверяем связи
-  # it 'has many' do
-  #   should have_many :positions
-  #   should have_many :carts
-  #   should have_many :comments
-  # end
-  #
-  # it 'has one' do
-  #   should have_one :image
-  # end
+  it 'calculate price' do
+    item1 = Item.new(price:10)
+    item2 = Item.new(price:20)
+
+    order = Order.new
+    order.items << item1
+    order.items << item2
+
+    order.calculate_total
+    expect(order.total).to be 30.0
+
+  end
 
 end

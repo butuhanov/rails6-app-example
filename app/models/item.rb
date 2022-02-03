@@ -33,6 +33,8 @@ class Item < ApplicationRecord
 
   has_one :image, as: :imageable
 
+  has_and_belongs_to_many :orders
+
   # Callbacks
   # см. также https://guides.rubyonrails.org/active_record_callbacks.html
   # after_initialize { p 'after initialize'} # Item.new
