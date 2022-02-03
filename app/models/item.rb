@@ -35,7 +35,7 @@ class Item < ApplicationRecord
 
   # Callbacks
   # см. также https://guides.rubyonrails.org/active_record_callbacks.html
-  after_initialize { p 'after initialize'} # Item.new
+  # after_initialize { p 'after initialize'} # Item.new
   # 2.7.3 :001 > Item.first
   # Item Load (2.0ms)  SELECT "items".* FROM "items" ORDER BY "items"."id" ASC LIMIT $1  [["LIMIT", 1]]
   # "after initialize"

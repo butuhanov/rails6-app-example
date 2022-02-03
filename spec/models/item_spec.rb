@@ -1,11 +1,16 @@
 require 'rails_helper'
-
+# для запуска только этого файла (этой спеки) можно использовать > bundle exec rspec spec/models/item_spec.rb
 RSpec.describe Item, type: :model do
-  it 'validates price' do
+
+  it 'validates name' do
     # проверяем класс Item
     # validates :name, :description, presence: true
     # должно быть presence: true на name
     should validate_presence_of :name
+  end
+
+  it 'validates price' do
+    should validate_numericality_of :price
   end
 
   # Ещё пример теста. Проверяем связи
