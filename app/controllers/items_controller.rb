@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   before_action :find_item, only: %i[show edit update destroy upvote]  # выполнять приватный метод
   # перед перечисленными
 
-  before_action :is_admin?, only: %i[edit] # проверять для этих эндпоинтов достаточность прав
+  before_action :admin?, only: %i[edit] # проверять для этих эндпоинтов достаточность прав
 
   after_action :show_info,  only: %i[index]
 
