@@ -18,4 +18,13 @@
 <%= submit_tag "Save", class: "btn btn-large btn-primary" %>
 <% end %>
 
+<!-- Способ 3 С использованием Simple Form -->
+<%= simple_form_for @item do |f| %>
+  <%= f.input :name, label: "Name", input_html: {class: "form-text"} %>
+  <%= f.input :price, label: "Price" , input_html: {class: "form-text"}  %>
+  <%= f.input :description, label: "Description", input_html: {class: "form-text"}   %>
+  <%= f.button :submit, class: "btn-primary" %>
+
+<% end %>
+
 <%= render partial: 'shared/email' %>

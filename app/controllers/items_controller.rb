@@ -36,12 +36,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.create(items_params)
+    @item = Item.create(items_params)
     # Проверка с помощью curl
     # > curl -d "name=curl_post&price=130&description=via%20curl" -X POST http://localhost:3000/items
 
     # ДОбавляем ответ в зависимости от успешности сохранения
-    if item.persisted?
+    if @item.persisted?
       # render json: item.name, status: :created
       flash[:success] = "Item was saved"
       redirect_to items_path
@@ -51,7 +51,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  def new;   end
+  def new
+    @item = Item.new
+  end
 
   def show;
       render body: "Not found", status: 404  unless @item
