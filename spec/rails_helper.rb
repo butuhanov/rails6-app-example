@@ -66,6 +66,12 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   #
 
+  # Config Factory Bot
+  config.include FactoryBot::Syntax::Methods
+  config.before(:suite) do
+    FactoryBot.find_definitions
+  end
+
   # Config Should matchers
   Shoulda::Matchers.configure do |config|
     config.integrate do |with|
