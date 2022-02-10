@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
 
+  # Добавляем обработку ошибок
+  include ErrorHandling
+
   # Главный контроллер, от которого наследуются все остальные
   # всё добавленное здесь будет доступно в любом контроллере
 
