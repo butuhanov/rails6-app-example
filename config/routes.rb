@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   # get '/questions/:id/edit', to: 'questions#edit' - вмето :id будет автоматически подставлять id из базы,
   # где : означает что это переменная поля
   # чтобы создать множество маршрутов для одного контроллера, удобнее писать
-  resources :questions #, only: %i[index new edit create update destroy] # %i чтобы не писать [:index :new :edit :create]
+  # resources :questions #, only: %i[index new edit create update destroy] # %i чтобы не писать [:index :new :edit :create]
+
+  # Для использования questions и answers - вложенные маршруты
+  resources :questions do
+    resources :answers, only: %i[create destroy]
+  end
 
   root 'pages#index'
 end

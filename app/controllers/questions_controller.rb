@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
   # Перед этими четырьмя методами будет запускаться set_question!
 
   def show
+    # Привязываем ответы к вопросу
     @answer = @question.answers.build
     @answers = Answer.order created_at: :desc
   end
@@ -61,6 +62,7 @@ class QuestionsController < ApplicationController
   end
 
   # Выносим повторяющийся блок
+  # ! используем для того чтобы указать, что метод опасный и может вызвать ошибку (если id не найден)
   def set_question!
     @question = Question.find params[:id]
   end
