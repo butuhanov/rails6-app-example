@@ -4,18 +4,28 @@
     они нужны для того, чтобы эти кусочки кода затем подключать на разных страницах
     в данном случае на других страницах достаточно добавить render 'form' в нужном месте, куда надо подставить
     разметку из файла _form - поиск файла будет выполнен в текущей директории, либо её надо указать явно
-%>
-<%= form_with model: @question do |f| %>   <%# Генерируем форму из модели с помощью хэлпера  %>
+%> 
+  <%= render 'shared/errors', object: @question %>
+  <%= form_with model: @question do |f| %> <%# Генерируем форму из модели с помощью хэлпера  %>
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :title %>
+      </div>
 
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title, required: true, minlength: 2, placeholder: 'Title' %>
-  </div>
+      <div class="col-sm-10">
+        <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body, required: true, minlength: 2 %>
-  </div>
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :body %>
+      </div>
 
-  <%= f.submit "Submit questions!" %>
-<% end %>
+      <div class="col-sm-10">
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+    </div>
+
+    <%= f.submit "Submit question!", class: 'btn btn-primary' %>
+  <% end %>
