@@ -1,0 +1,19 @@
+<h1>Questions</h1>
+
+<% @questions.each do |question| %>
+  <h2><%= question.title %></h2>
+
+  <time datetime="<%= question.formatted_created_at %>">
+    <%= question.formatted_created_at %>
+  </time>
+
+  <p>
+    <%= question.body %>
+    <br>
+    <%# если нужен просто id то можно писать просто question, т.к. question.id будет в этом случае автоматически %>
+    <%# здесь пишем просто question, а не @question, поскольку question здесь локальная переменная %>
+    <%= link_to 'Show', question_path(question.id) %> |
+    <%= link_to 'Edit', edit_question_path(question) %> |
+    <%= link_to 'Destroy', question_path(question), data: {method: :delete, confirm: 'Are you sure?'} %>
+  </p>
+<% end %>

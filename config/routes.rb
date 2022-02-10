@@ -20,4 +20,12 @@ Rails.application.routes.draw do
   get '/admin/users_count', to: 'admin#users_count'
 
   root to: 'items#index'
+
+  # Обрабатываем марщруты
+  # get '/questions/new', to: 'questions#index'
+  # post '/questions', to: 'questions#create'
+  # get '/questions/:id/edit', to: 'questions#edit' - вмето :id будет автоматически подставлять id из базы,
+  # где : означает что это переменная поля
+  # чтобы создать множество маршрутов для одного контроллера, удобнее писать
+  resources :questions #, only: %i[index new edit create update destroy] # %i чтобы не писать [:index :new :edit :create]
 end
