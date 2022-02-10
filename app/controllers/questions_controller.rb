@@ -1,23 +1,28 @@
 class QuestionsController < ApplicationController
+
+  before_action :set_question!, only: %i[show destroy edit update]
+  # Перед этими четырьмя методами будет запускаться set_question!
+
   def show
-    @question = Question.find_by id: params[:id]
+    @answer = @question.answers.build
+    @answers = Answer.order created_at: :desc
   end
 
   def destroy
-    @question = Question.find_by id: params[:id]
     @question.destroy
+    flash[:success] = "Question deleted!"
     redirect_to questions_path
   end
 
   def edit
     # Ищем вопрос который надо отредактировать.
     # params - объект со всеми параметрами запроса - id берется из маршрута routes.rb (/questions/:id/edit)
-    @question = Question.find_by id: params[:id]
+    #  @question = Question.find_by id: params[:id]
   end
 
   def update
-    @question = Question.find_by id: params[:id]
     if @question.update question_params
+      flash[:success] = "Question updated!"
       redirect_to questions_path
     else
       render :edit
@@ -39,6 +44,7 @@ class QuestionsController < ApplicationController
 
     @question = Question.new question_params # Будет создан образец класса Question с параметрами
     if @question.save # Если получилось сохранить то делаем редирект 302
+      flash[:success] = "Question created!"
       redirect_to questions_path # Редирект на страницу со всеми вопросами
     else
       render :new
@@ -52,5 +58,10 @@ class QuestionsController < ApplicationController
     # Находим в присланных параметрах question и из этих параметров достаём только title и body
     # Таким образом фильтруем всё что присылает клиент
     params.require(:question).permit(:title, :body)
+  end
+
+  # Выносим повторяющийся блок
+  def set_question!
+    @question = Question.find params[:id]
   end
 end
