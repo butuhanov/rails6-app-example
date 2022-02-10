@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 
   get '/admin/users_count', to: 'admin#users_count'
 
-  root to: 'items#index'
+  # root to: 'items#index'
+  # http://localhost:3000/items
 
   # Обрабатываем марщруты
   # get '/questions/new', to: 'questions#index'
@@ -28,4 +29,6 @@ Rails.application.routes.draw do
   # где : означает что это переменная поля
   # чтобы создать множество маршрутов для одного контроллера, удобнее писать
   resources :questions #, only: %i[index new edit create update destroy] # %i чтобы не писать [:index :new :edit :create]
+
+  root 'pages#index'
 end
