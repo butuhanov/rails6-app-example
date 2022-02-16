@@ -54,8 +54,9 @@ gem "simple_form"
 gem "webpacker"
 
 
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+# gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
+gem 'kaminari', '~> 1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -63,6 +64,8 @@ group :development, :test do
   gem "factory_bot"
   gem 'rails-controller-testing'
   gem "rspec-rails"
+
+  gem 'faker', '~> 2'
 end
 
 group :development do
