@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by email: params[:email]
-    if user&.authenticate(params[:password])
+    if user&.authenticate(params[:password]) #  амперсанд & показывает, что если user будет nil мы сразу попадем в else
       sign_in user
       flash[:success] = "Welcome back, #{current_user.name_or_email}!"
       redirect_to root_path
