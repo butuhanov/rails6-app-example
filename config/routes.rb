@@ -35,5 +35,8 @@ Rails.application.routes.draw do
     resources :answers, except: %i[new show]
   end
 
+  # для управления пользователями
+  resources :users, only: %i[new create]
+
   root 'pages#index'
 end
