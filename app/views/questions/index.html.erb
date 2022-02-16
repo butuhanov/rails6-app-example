@@ -3,10 +3,10 @@
 
 <h1 class="mb-4">Questions</h1>
 
-<%= link_to 'New question', new_question_path, class: 'btn btn-primary btn-lg' %>
-<%= paginate @questions %>
+<%= link_to 'New question', new_question_path, class: 'btn btn-primary btn-lg mb-3' %>
+<%== pagy_bootstrap_nav @pagy %>
 <% @questions.each do |question| %>
-  <article class="card mt-3">
+  <article class="card my-3">
     <div class="card-body">
       <h4><%= question.title %></h4>
 
@@ -20,8 +20,6 @@
           </p>
         </section>
 
-        <%# если нужен просто id то можно писать просто question, т.к. question.id будет в этом случае автоматически %>
-<%# здесь пишем просто question, а не @question, поскольку question здесь локальная переменная %>
         <%= link_to 'Show', question_path(question), class: 'btn btn-primary' %>
         <%= link_to 'Edit', edit_question_path(question), class: 'btn btn-secondary' %>
         <%= link_to 'Destroy', question_path(question), class: 'btn btn-danger',
@@ -29,4 +27,4 @@
     </div>
   </article>
 <% end %>
-<%= paginate @questions %>
+<%== pagy_bootstrap_nav @pagy %>
