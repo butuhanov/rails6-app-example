@@ -1,5 +1,15 @@
 class UserDecorator < ApplicationDecorator
-  delegate_all
+
+  # логика отображения имени
+  #
+  delegate_all # Делегировать неизвестные методы самому объекту который декорируем
+
+  # Проверяем есть имя или нет, если его нет, то берём имя из почты
+  def name_or_email
+    return name if name.present?
+
+    email.split('@')[0]
+  end
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
