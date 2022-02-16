@@ -5,9 +5,15 @@ class QuestionsController < ApplicationController
 
   def show
     # Привязываем ответы к вопросу
+    # @answer = @question.answers.build
+    # @pagy, @answers = pagy @question.answers.order(created_at: :desc)
+    # # Answer.where(question: @question).limit(2).order(created_at: :desc)
+    #
+    # Используем декораторы
+    @question = @question.decorate
     @answer = @question.answers.build
     @pagy, @answers = pagy @question.answers.order(created_at: :desc)
-    # Answer.where(question: @question).limit(2).order(created_at: :desc)
+    @answers = @answers.decorate
   end
 
   def destroy
@@ -33,6 +39,7 @@ class QuestionsController < ApplicationController
 
   def index
     @pagy, @questions = pagy Question.order(created_at: :desc)
+    @questions = @questions.decorate
   end
 
   def new
